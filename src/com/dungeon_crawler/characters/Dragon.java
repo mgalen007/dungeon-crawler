@@ -1,8 +1,7 @@
 package com.dungeon_crawler.characters;
 
 public class Dragon extends Monster {
-    public Dragon(String name) {
-        int assignedRoom = (int) (Math.ceil(Math.random() * 10));
+    public Dragon(String name, int assignedRoom) {
         super(name, 250_000, assignedRoom);
     }
 
