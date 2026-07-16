@@ -10,6 +10,7 @@ public class Player extends Character {
         this.currentRoom = 1;
     }
 
+    @Override
     public void getInfo() {
         System.out.println("Player name: " + this.getName());
         System.out.println("Current room: " + currentRoom);

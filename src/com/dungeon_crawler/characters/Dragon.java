@@ -6,11 +6,13 @@ public class Dragon extends Monster {
         super(name, 250_000, assignedRoom);
     }
 
+    @Override
     public void attack(Player target, int intensity) {
         target.setXp(target.getXp() - intensity);
         System.out.println("Dropped player " + target.getName() + "'s XP to " + target.getXp());
     }
 
+    @Override
     public void getInfo() {
         System.out.println("Dragon name: " + this.getName());
         System.out.println("Assigned room: " + this.assignedRoom);
