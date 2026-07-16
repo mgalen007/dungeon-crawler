@@ -1,8 +1,7 @@
 package com.dungeon_crawler.characters;
 
 public class Goblin extends Monster {
-    public Goblin(String name) {
-        int assignedRoom = (int) (Math.ceil(Math.random() * 10));
+    public Goblin(String name, int assignedRoom) {
         super(name, 5_000, assignedRoom);
     }
 
