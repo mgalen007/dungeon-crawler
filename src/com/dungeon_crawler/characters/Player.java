@@ -1,5 +1,7 @@
 package com.dungeon_crawler.characters;
 
+import com.dungeon_crawler.items.Potion;
+
 public class Player extends Character {
     private int currentRoom;
 
@@ -21,5 +23,11 @@ public class Player extends Character {
 
     public void nextRoom() {
         currentRoom++;
+    }
+
+    public void takePotion(Potion potion) {
+        int xpGain = potion.getXpValue();
+        this.setXp(this.getXp() + xpGain);
+        System.out.println("Gained XP: " + xpGain);
     }
 }
