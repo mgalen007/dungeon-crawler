@@ -6,11 +6,13 @@ public class Goblin extends Monster {
         super(name, 5_000, assignedRoom);
     }
 
+    @Override
     public void getInfo() {
         System.out.println("Goblin name: " + this.getName());
         System.out.println("Assigned room: " + this.assignedRoom);
     }
 
+    @Override
     public void attack(Player target, int intensity) {
         target.setXp(target.getXp() - intensity);
         System.out.println("Dropped player" + target.getName() + "'s XP to " + target.getXp());
