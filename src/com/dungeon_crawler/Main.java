@@ -77,8 +77,9 @@ public class Main {
 
         boolean running = true;
 
+        menu();
+
         while (running) {
-            menu();
             String cmd = readCommand();
             Room currentRoom = rooms.get(player.getCurrentRoom() - 1);
 
