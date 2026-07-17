@@ -27,6 +27,7 @@ public class Room {
         System.out.println("Room " + this.getRoomId() + " monsters:");
 
         for (Monster monster: monsters) {
+            System.out.print("[-] ");
             monster.getInfo();
         }
 
@@ -37,6 +38,7 @@ public class Room {
         System.out.println("Room " + this.getRoomId() + " items:");
 
         for (Item item: items) {
+            System.out.print("[+] ");
             item.getInfo();
         }
 
