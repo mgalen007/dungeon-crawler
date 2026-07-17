@@ -9,6 +9,7 @@ public class Goblin extends Monster {
     public void getInfo() {
         System.out.println("Goblin name: " + this.getName());
         System.out.println("Assigned room: " + this.assignedRoom);
+        System.out.println("XP: " + this.getXp());
     }
 
     @Override
