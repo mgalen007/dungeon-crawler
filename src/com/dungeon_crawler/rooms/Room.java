@@ -37,9 +37,14 @@ public class Room {
         System.out.println("Room " + this.getRoomId() + " items:");
 
         for (Item item: items) {
-            System.out.println("Potion: " + item.getXpValue() + "XP");
+            item.getInfo();
         }
 
         System.out.println("-----");
     }
+
+    public ArrayList<Monster> getMonsterList() { return monsters; }
+    public ArrayList<Item> getItemList() { return items; }
+    public void removeMonster(Monster m) { monsters.remove(m); }
+    public void removeItem(Item i) { items.remove(i); }
 }

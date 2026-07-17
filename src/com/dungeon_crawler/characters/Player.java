@@ -17,6 +17,15 @@ public class Player extends Character {
         System.out.println("XP: " + this.getXp());
     }
 
+    @Override
+    public int getAttackIntensity() {
+        return (int) (Math.random() * 10_000);
+    }
+
+    public int getCurrentRoom() {
+        return currentRoom;
+    }
+
     public void attack(Monster target, int intensity) {
         target.setXp(target.getXp() - intensity);
         System.out.println("Dropped monster " + target.getName() + "'s XP to " + target.getXp());
@@ -24,6 +33,7 @@ public class Player extends Character {
 
     public void nextRoom() {
         currentRoom++;
+        System.out.println("Nice! You are now in room " + currentRoom);
     }
 
     public void takePotion(Potion potion) {

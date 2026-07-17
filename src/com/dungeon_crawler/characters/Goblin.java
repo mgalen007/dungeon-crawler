@@ -16,4 +16,9 @@ public class Goblin extends Monster {
         target.setXp(target.getXp() - intensity);
         System.out.println("Dropped player" + target.getName() + "'s XP to " + target.getXp());
     }
+
+    @Override
+    public int getAttackIntensity() {
+        return (int) (Math.random() * 3_000);
+    }
 }

@@ -10,11 +10,12 @@ import com.dungeon_crawler.items.Potion;
 import com.dungeon_crawler.rooms.Room;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Optional;
 
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
-    private static void banner() {
+    private static void menu() {
         System.out.println(" ------");
         System.out.println("< MENU >");
         System.out.println(" ------");
@@ -22,7 +23,8 @@ public class Main {
         System.out.println("[2] Get player info -> player info");
         System.out.println("[3] Attack a monster -> attack");
         System.out.println("[4] Take potion -> take potion");
-        System.out.println("[5] Exit -> quit");
+        System.out.println("[5] Advance to next room -> next room");
+        System.out.println("[6] Exit -> quit");
         System.out.println("--------");
     }
 
@@ -73,29 +75,117 @@ public class Main {
         System.out.println("Welcome to Dungeon Crawler " + player.getName() + "!");
         System.out.println("Your goal is to finish room 10, you are in room 1");
 
-        banner();
-        String cmd = readCommand();
+        boolean running = true;
 
-        switch(cmd) {
-            case "room info":
-                System.out.println("Room info");
-                break;
-            case "player info":
-                System.out.println("Player info");
-                break;
-            case "attack":
-                System.out.println("Attacking");
-                break;
-            case "take potion":
-                System.out.println("Taking potion");
-                break;
-            case "quit":
-                System.out.println("Bye :)");
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Invalid command!");
-                banner();
+        while (running) {
+            menu();
+            String cmd = readCommand();
+            Room currentRoom = rooms.get(player.getCurrentRoom() - 1);
+
+            switch (cmd) {
+                case "room info": {
+                    currentRoom.getMonsters();
+                    currentRoom.getItems();
+                    break;
+                }
+
+                case "player info": {
+                    player.getInfo();
+                    break;
+                }
+
+                case "attack": {
+                    ArrayList<Monster> monsters = currentRoom.getMonsterList();
+
+                    if (monsters.isEmpty()) {
+                        System.out.println("No monsters left in this room");
+                        break;
+                    }
+
+                    System.out.print("Enter the monster name: ");
+                    String targetName = scanner.nextLine();
+
+                    Optional<Monster> target = monsters
+                            .stream()
+                            .filter(m -> m.getName().equalsIgnoreCase(targetName))
+                            .findFirst();
+
+                    if (target.isPresent()) {
+                        Monster monster = target.get();
+                        player.attack(monster, player.getAttackIntensity());
+
+                        if (monster.isDead()) {
+                            System.out.println("Monster " + monster.getName() + " has been defeated!");
+                            currentRoom.removeMonster(monster);
+                        } else {
+                            int monsterIntensity = monster.getAttackIntensity();
+                            monster.attack(player, monsterIntensity);
+
+                            if (player.isDead()) {
+                                System.out.println(monster.getName() + " kills " + player.getName() + "!");
+                                System.out.println("Game Over!");
+                                running = false;
+                            }
+                        }
+
+                    } else {
+                        System.out.println("Monster not found: " + targetName);
+                    }
+                    break;
+                }
+
+                case "take potion": {
+                    ArrayList<Item> items = currentRoom.getItemList();
+
+                    if (items.isEmpty()) {
+                        System.out.println("No items available");
+                        break;
+                    }
+
+                    Optional<Potion> firstPotion = items
+                            .stream()
+                            .filter(i -> i instanceof Potion)
+                            .map(i -> (Potion) i)
+                            .findFirst();
+
+                    if (firstPotion.isPresent()) {
+                        Potion potion = firstPotion.get();
+                        player.takePotion(potion);
+                        potion.setIsUsed();
+                        currentRoom.removeItem(potion);
+                    } else {
+                        System.out.println("No potion available");
+                    }
+
+                    break;
+                }
+
+                case "quit": {
+                    System.out.println("Bye :)");
+                    running = false;
+                    break;
+                }
+
+                case "next room": {
+                    if (!currentRoom.getMonsterList().isEmpty()) {
+                        System.out.println("Kill all monsters first");
+                        break;
+                    }
+
+                    player.nextRoom();
+
+                    if (player.getCurrentRoom() > 10) {
+                        System.out.println("Congratulations! You cleared all the rooms!");
+                        running = false;
+                    }
+                    break;
+                }
+
+                default: {
+                    System.out.println("Invalid command!");
+                    menu();
+                }
+            }
         }
     }
 }

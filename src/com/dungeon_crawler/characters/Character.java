@@ -10,6 +10,11 @@ public abstract class Character {
     }
 
     public abstract void getInfo();
+    public abstract int getAttackIntensity();
+
+    public boolean isDead() {
+        return xp <= 0;
+    }
 
     public String getName() {
         return name;
