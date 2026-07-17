@@ -1,15 +1,16 @@
 package com.dungeon_crawler;
 
+import com.dungeon_crawler.characters.Dragon;
+import com.dungeon_crawler.characters.Goblin;
 import com.dungeon_crawler.characters.Monster;
 import com.dungeon_crawler.characters.Player;
-import com.dungeon_crawler.characters.Goblin;
-import com.dungeon_crawler.characters.Dragon;
 import com.dungeon_crawler.items.Item;
 import com.dungeon_crawler.items.Potion;
 import com.dungeon_crawler.rooms.Room;
+
 import java.util.ArrayList;
-import java.util.Scanner;
 import java.util.Optional;
+import java.util.Scanner;
 
 public class Main {
     public static Scanner scanner = new Scanner(System.in);

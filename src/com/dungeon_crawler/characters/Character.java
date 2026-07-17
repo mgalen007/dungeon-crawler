@@ -10,6 +10,7 @@ public abstract class Character {
     }
 
     public abstract void getInfo();
+
     public abstract int getAttackIntensity();
 
     public boolean isDead() {
