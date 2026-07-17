@@ -1,6 +1,5 @@
 package com.dungeon_crawler;
 
-import com.dungeon_crawler.characters.Character;
 import com.dungeon_crawler.characters.Monster;
 import com.dungeon_crawler.characters.Player;
 import com.dungeon_crawler.characters.Goblin;
@@ -14,6 +13,12 @@ import java.util.Optional;
 
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
+
+    public static void banner() {
+        System.out.println(" --------------------------");
+        System.out.println("|   DUNGEON CRAWLER v1.0   |");
+        System.out.println(" --------------------------");
+    }
 
     private static void menu() {
         System.out.println(" ------");
@@ -67,6 +72,7 @@ public class Main {
             rooms.add(new Room(i, monsters, items));
         }
 
+        banner();
         System.out.println("Initialized 10 rooms");
         System.out.print("Enter your name: ");
         String playerName = scanner.nextLine();
