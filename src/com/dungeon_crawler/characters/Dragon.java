@@ -17,4 +17,9 @@ public class Dragon extends Monster {
         System.out.println("Assigned room: " + this.assignedRoom);
         System.out.println("XP: " + this.getXp());
     }
+
+    @Override
+    public int getAttackIntensity() {
+        return (int) (Math.random() * 8_000);
+    }
 }

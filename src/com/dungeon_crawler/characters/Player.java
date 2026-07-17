@@ -17,6 +17,11 @@ public class Player extends Character {
         System.out.println("XP: " + this.getXp());
     }
 
+    @Override
+    public int getAttackIntensity() {
+        return (int) (Math.random() * 10_000);
+    }
+
     public int getCurrentRoom() {
         return currentRoom;
     }

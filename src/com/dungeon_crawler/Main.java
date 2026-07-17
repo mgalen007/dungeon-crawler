@@ -112,14 +112,13 @@ public class Main {
 
                     if (target.isPresent()) {
                         Monster monster = target.get();
-                        int intensity = (int) (Math.random() * 10_000);
-                        player.attack(monster, intensity);
+                        player.attack(monster, player.getAttackIntensity());
 
                         if (monster.isDead()) {
                             System.out.println("Monster " + monster.getName() + " has been defeated!");
                             currentRoom.removeMonster(monster);
                         } else {
-                            int monsterIntensity = (int) (Math.random() * (monster instanceof Goblin ? 3_000 : 8_000));
+                            int monsterIntensity = monster.getAttackIntensity();
                             monster.attack(player, monsterIntensity);
 
                             if (player.isDead()) {
