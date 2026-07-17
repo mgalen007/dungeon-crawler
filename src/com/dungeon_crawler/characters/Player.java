@@ -28,6 +28,7 @@ public class Player extends Character {
 
     public void nextRoom() {
         currentRoom++;
+        System.out.println("Nice! You are now in room " + currentRoom);
     }
 
     public void takePotion(Potion potion) {
