@@ -17,6 +17,10 @@ public class Player extends Character {
         System.out.println("XP: " + this.getXp());
     }
 
+    public int getCurrentRoom() {
+        return currentRoom;
+    }
+
     public void attack(Monster target, int intensity) {
         target.setXp(target.getXp() - intensity);
         System.out.println("Dropped monster " + target.getName() + "'s XP to " + target.getXp());

@@ -14,4 +14,14 @@ public abstract class Item {
     public int getXpValue() {
         return this.xpValue;
     }
+
+    public boolean isUsed() {
+        return isUsed;
+    }
+
+    public void setIsUsed() {
+        isUsed = true;
+    }
+
+    public abstract void getInfo();
 }

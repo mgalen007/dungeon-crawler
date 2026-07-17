@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
 
-    private static void banner() {
+    private static void menu() {
         System.out.println(" ------");
         System.out.println("< MENU >");
         System.out.println(" ------");
@@ -73,29 +73,34 @@ public class Main {
         System.out.println("Welcome to Dungeon Crawler " + player.getName() + "!");
         System.out.println("Your goal is to finish room 10, you are in room 1");
 
-        banner();
-        String cmd = readCommand();
+        boolean running = true;
 
-        switch(cmd) {
-            case "room info":
-                System.out.println("Room info");
-                break;
-            case "player info":
-                System.out.println("Player info");
-                break;
-            case "attack":
-                System.out.println("Attacking");
-                break;
-            case "take potion":
-                System.out.println("Taking potion");
-                break;
-            case "quit":
-                System.out.println("Bye :)");
-                System.exit(0);
-                break;
-            default:
-                System.out.println("Invalid command!");
-                banner();
+        while (running) {
+            menu();
+            String cmd = readCommand();
+            int currentRoom = player.getCurrentRoom();
+
+            switch (cmd) {
+                case "room info":
+                    System.out.println("Room info");
+                    break;
+                case "player info":
+                    System.out.println("Player info");
+                    break;
+                case "attack":
+                    System.out.println("Attacking");
+                    break;
+                case "take potion":
+                    System.out.println("Taking potion");
+                    break;
+                case "quit":
+                    System.out.println("Bye :)");
+                    running = false;
+                    break;
+                default:
+                    System.out.println("Invalid command!");
+                    menu();
+            }
         }
     }
 }
